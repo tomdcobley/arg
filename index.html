@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSTEM_OVERRIDE_//: LOG_IN</title>
+    <title>ARG</title>
     <style>
-        /* Base Reset & Styling */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -21,14 +20,12 @@
             justify-content: center;
             align-items: center;
             color: #39ff14;
-            /* Retro CRT scanline texture */
             background-image: 
                 linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
                 linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
             background-size: 100% 4px, 6px 100%;
         }
 
-        /* Ambient Glow & Grid Background overlay */
         .ambient-overlay {
             position: absolute;
             top: 0;
@@ -40,7 +37,6 @@
             z-index: 1;
         }
 
-        /* Glitch Animation for Atmosphere */
         @keyframes textFlicker {
             0% { opacity: 0.98; text-shadow: 0 0 4px #39ff14; }
             50% { opacity: 1; text-shadow: 0 0 10px #39ff14, 0 0 20px #11aa00; }
@@ -48,7 +44,6 @@
             100% { opacity: 0.99; text-shadow: 0 0 4px #39ff14; }
         }
 
-        /* Central Terminal Container */
         .terminal-container {
             position: relative;
             z-index: 2;
@@ -70,7 +65,6 @@
             text-transform: uppercase;
         }
 
-        /* Cipher Input Box styling */
         .cipher-input-wrapper {
             position: relative;
             margin: 20px 0;
@@ -95,14 +89,12 @@
             box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.3), 0 0 10px rgba(57, 255, 20, 0.3);
         }
 
-        /* Floating placeholder label simulation */
         input[type="text"]::placeholder {
             color: rgba(57, 255, 20, 0.4);
             text-transform: uppercase;
             font-size: 1rem;
         }
 
-        /* Hidden status message node */
         .status-msg {
             margin-top: 15px;
             font-size: 0.9rem;
@@ -113,7 +105,6 @@
         .error { color: #ff3333; text-shadow: 0 0 5px #ff3333; }
         .success { color: #39ff14; text-shadow: 0 0 5px #39ff14; }
 
-        /* Cryptic background details */
         .bg-deco {
             position: absolute;
             font-size: 0.7rem;
@@ -130,22 +121,18 @@
 
     <div class="ambient-overlay"></div>
 
-    <!-- Cryptic Decorative Metadata -->
     <div class="bg-deco top-left">
-        SYS_STATUS: DEGRADED<br>
-        LOC: [REDACTED]<br>
-        SIG_強度: IIII|||...
+        STATUS: ON<br>
+        CODE: [REDACTED]
     </div>
     <div class="bg-deco bottom-right">
-        ENC_TYPE: AES_256_BLOCK<br>
-        NODE_ID: 0x7F3A9<br>
-        "The truth is written in the static."
+        ENC_TYPE: [REDACTED]<br>
+        USER_ID: [REDACTED]
     </div>
 
-    <!-- Main ARG Interface -->
     <div class="terminal-container">
         <div class="terminal-header">
-            --- SECURE NODE ACCESS PROTOCOL ---
+            Welcome
         </div>
         
         <div class="cipher-input-wrapper">
@@ -159,7 +146,6 @@
         const inputEl = document.getElementById('cipherInput');
         const statusEl = document.getElementById('statusMessage');
 
-        // Simple placeholder interaction to make it feel responsive
         inputEl.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 const val = inputEl.value.trim().toLowerCase();
@@ -170,16 +156,14 @@
                     return;
                 }
 
-                // Add your custom ARG puzzle answers here!
                 if (val === 'seek' || val === '404' || val === 'hello') {
                     statusEl.className = "status-msg success";
                     statusEl.innerText = "ACCESS GRANTED. REDIRECTING...";
-                    // window.location.href = "next_puzzle.html"; // Uncomment to link pages
+                    // window.location.href = "next_puzzle.html";
                 } else {
                     statusEl.className = "status-msg error";
                     statusEl.innerText = `ERR_INVALID_KEY: "${val.toUpperCase()}"`;
                     
-                    // Simple screen shake effect on failure
                     inputEl.style.transform = "translateX(5px)";
                     setTimeout(() => inputEl.style.transform = "translateX(-5px)", 50);
                     setTimeout(() => inputEl.style.transform = "translateX(0)", 100);
